@@ -46,3 +46,39 @@ class RestViewSet(viewsets.ViewSet):
         )
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class AnotherRestViewSet(viewsets.ViewSet):
+    serializer_class = MessageSerializer
+
+    @extend_schema(
+        summary="Check REST API",
+        description="This endpoint checks if the REST API is working.",
+        examples=[
+            OpenApiExample(
+                "Successful Response",
+                value={
+                    "message": "This message comes from the backend. "
+                    "If you're seeing this, the REST API is working!"
+                },
+                response_only=True,
+            )
+        ],
+        methods=["GET"],
+    )
+    @action(
+        detail=False,
+        methods=["get"],
+        permission_classes=[AllowAny],
+        url_path="rest-check",
+    )
+    def rest_check(self, request):
+        serializer = self.serializer_class(
+            data={
+                "message": "This message comes from the backend. "
+                "If you're seeing this, the REST API is working!"
+            }
+        )
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
