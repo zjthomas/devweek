@@ -2,7 +2,7 @@ import requests
 import json
 
 # Your Fingerprint Secret API Key (replace with your actual secret key)
-API_KEY = 'FtINK3IGImpsRaB7Fiyu'
+API_KEY = 'secret_api_key'
 
 # URL for the Fingerprint Server API (use the appropriate region if needed)
 FINGERPRINT_API_URL = 'https://api.fpjs.io/events/'
